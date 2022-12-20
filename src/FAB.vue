@@ -1,5 +1,5 @@
 <template>
-    <div :id="position + '-wrapper'" class="fab-wrapper" v-on-clickaway="away"
+    <div :id="position + '-wrapper'" class="fab-wrapper" v-click-away="away"
          :style="[ pos, {zIndex: zIndex}, {position: positionType} ]">
         <div :id="position + '-action'" class="actions-container" :style="listPos">
             <transition name="fab-actions-appear"
@@ -72,13 +72,12 @@
 </template>
 
 <script>
-    import {mixin as clickaway} from 'vue-clickaway';
+    import { directive } from "vue3-click-away";
     import Ripple from 'vue-ripple-directive';
     import {VTooltip} from 'v-tooltip'
 
     export default {
-        mixins: [clickaway],
-        directives: {Ripple, tooltip: VTooltip},
+        directives: {Ripple, ClickAway: directive, tooltip: VTooltip},
         data() {
             return {
                 toggle: this.startOpened,
